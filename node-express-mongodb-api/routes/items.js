@@ -2,6 +2,37 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../models/item');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     items:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *          description: The item's name
+ *        description:
+ *          type: string
+ *          description: Descritpion of item
+ */
+
+/**
+ * @swagger
+ * /items:
+ *   post:
+ *     summary: Create a new item
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref.'#/components/schemas/items'
+ *     responses:
+ *       201:
+ *         description: Item created
+ */
+
 // Create a new item
 router.post('/', async (req, res) => {
   try {
@@ -14,6 +45,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /items:
+ *   get:
+ *     summary: retrieves a list of items
+ *     responses:
+ *       200:
+ *         description: A list of items
+ */
+
 // Get all items
 router.get('/', async (req, res) => {
   try {
@@ -24,6 +65,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /items:
+ *   patch:
+ *     summary: Update item
+ *     responses:
+ *       200:
+ *         description: Update item
+ */
+
 // Update an item
 router.patch('/:id', async (req, res) => {
   try {
@@ -33,6 +84,16 @@ router.patch('/:id', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+/**
+ * @swagger
+ * /items:
+ *   delete:
+ *     summary: Delete an item
+ *     responses:
+ *       200:
+ *         description: Delete item
+ */
 
 // Delete an item
 router.delete('/:id', async (req, res) => {
