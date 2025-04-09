@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/', {
+//cloud connection: mongodb+srv://hcf5108:DlOi3LMfjim8Yj2c@cmpsc421-lab2.3kenx.mongodb.net/?retryWrites=true&w=majority&appName=CMPSC421-Lab2
+mongoose.connect('mongodb://host.docker.internal:27017/CMPSC421', { // LOCAL CONNECTION: mongodb://localhost:27017/
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
